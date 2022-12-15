@@ -2,6 +2,8 @@
 
 uint32_t led1_Counter = 0;
 uint32_t led2_Counter = 0;
+uint32_t uart_Counter = 0;
+uint32_t i = 0;
 int main(void)
 {
 	HAL_Init();
@@ -9,6 +11,7 @@ int main(void)
 
 	Clock_Enable(GPIOG);
 	Timer_Init(TIM6);
+	UART_Init();
 	GPIO_Init(GPIOG, GPIO_PIN_14);
 	GPIO_Init(GPIOG, GPIO_PIN_13);
 	Timer_Start_IT();
@@ -19,18 +22,30 @@ int main(void)
 
 		if(SysTick_Get() > 0)
 		{
+
 			led1_Counter += SysTick_Get();
 			led2_Counter += SysTick_Get();
+			uart_Counter += SysTick_Get();
 			SysTick_Set(0);
-			if(led1_Counter == 1000)
+			if(led1_Counter >= 100)
 			{
 				led1_Counter = 0;
 				GPIO_Pin_Toggle(GPIOG, GPIO_PIN_13);
 			}
-			if(led2_Counter == 500)
+			if(led2_Counter >= 100)
 			{
 				led2_Counter = 0;
 				GPIO_Pin_Toggle(GPIOG, GPIO_PIN_14);
+			}
+			if(uart_Counter >= 10)
+			{
+				uart_Counter = 0;
+				Print_Msg("Hello From STM32F429 %d\r\n", i++);
+				if(i == (65535))
+				{
+					i = 0;
+				}
+
 			}
 		}
 	}

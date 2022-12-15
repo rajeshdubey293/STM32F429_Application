@@ -1,3 +1,4 @@
+"./BSP/Src/ADC.o"
 "./BSP/Src/CAN.o"
 "./BSP/Src/GPIO.o"
 "./BSP/Src/I2C.o"

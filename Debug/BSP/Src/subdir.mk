@@ -5,6 +5,7 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
+../BSP/Src/ADC.c \
 ../BSP/Src/CAN.c \
 ../BSP/Src/GPIO.c \
 ../BSP/Src/I2C.c \
@@ -13,6 +14,7 @@ C_SRCS += \
 ../BSP/Src/UART.c 
 
 OBJS += \
+./BSP/Src/ADC.o \
 ./BSP/Src/CAN.o \
 ./BSP/Src/GPIO.o \
 ./BSP/Src/I2C.o \
@@ -21,6 +23,7 @@ OBJS += \
 ./BSP/Src/UART.o 
 
 C_DEPS += \
+./BSP/Src/ADC.d \
 ./BSP/Src/CAN.d \
 ./BSP/Src/GPIO.d \
 ./BSP/Src/I2C.d \
@@ -36,7 +39,7 @@ BSP/Src/%.o BSP/Src/%.su: ../BSP/Src/%.c BSP/Src/subdir.mk
 clean: clean-BSP-2f-Src
 
 clean-BSP-2f-Src:
-	-$(RM) ./BSP/Src/CAN.d ./BSP/Src/CAN.o ./BSP/Src/CAN.su ./BSP/Src/GPIO.d ./BSP/Src/GPIO.o ./BSP/Src/GPIO.su ./BSP/Src/I2C.d ./BSP/Src/I2C.o ./BSP/Src/I2C.su ./BSP/Src/SPI.d ./BSP/Src/SPI.o ./BSP/Src/SPI.su ./BSP/Src/TIM.d ./BSP/Src/TIM.o ./BSP/Src/TIM.su ./BSP/Src/UART.d ./BSP/Src/UART.o ./BSP/Src/UART.su
+	-$(RM) ./BSP/Src/ADC.d ./BSP/Src/ADC.o ./BSP/Src/ADC.su ./BSP/Src/CAN.d ./BSP/Src/CAN.o ./BSP/Src/CAN.su ./BSP/Src/GPIO.d ./BSP/Src/GPIO.o ./BSP/Src/GPIO.su ./BSP/Src/I2C.d ./BSP/Src/I2C.o ./BSP/Src/I2C.su ./BSP/Src/SPI.d ./BSP/Src/SPI.o ./BSP/Src/SPI.su ./BSP/Src/TIM.d ./BSP/Src/TIM.o ./BSP/Src/TIM.su ./BSP/Src/UART.d ./BSP/Src/UART.o ./BSP/Src/UART.su
 
 .PHONY: clean-BSP-2f-Src
 

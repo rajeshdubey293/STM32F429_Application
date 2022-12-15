@@ -13,7 +13,6 @@ volatile uint32_t sysTick = 0;;
 void Timer_Init(TIM_TypeDef *Timer)
 {
 	htim.Instance = Timer;
-	//htimer.Init.AutoReloadPreload = 1;
 	htim.Init.Prescaler = 1;
 	htim.Init.Period = 20000-1;
 	if(HAL_TIM_Base_Init(&htim) != HAL_OK)

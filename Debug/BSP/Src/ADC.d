@@ -1,5 +1,5 @@
-BSP/Src/CAN.o: ../BSP/Src/CAN.c \
- /home/vicky/STM32CubeIDE/workspace_1.11.0/STM32F429_Empty_Project/BSP/Inc/CAN.h \
+BSP/Src/ADC.o: ../BSP/Src/ADC.c \
+ /home/vicky/STM32CubeIDE/workspace_1.11.0/STM32F429_Empty_Project/BSP/Inc/ADC.h \
  /home/vicky/STM32CubeIDE/workspace_1.11.0/STM32F429_Empty_Project/Task\ Schedular/Inc/main.h \
  /home/vicky/STM32CubeIDE/workspace_1.11.0/STM32F429_Empty_Project/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
  /home/vicky/STM32CubeIDE/workspace_1.11.0/STM32F429_Empty_Project/Task\ Schedular/Inc/stm32f4xx_hal_conf.h \
@@ -59,9 +59,10 @@ BSP/Src/CAN.o: ../BSP/Src/CAN.c \
  /home/vicky/STM32CubeIDE/workspace_1.11.0/STM32F429_Empty_Project/BSP/Inc/GPIO.h \
  /home/vicky/STM32CubeIDE/workspace_1.11.0/STM32F429_Empty_Project/BSP/Inc/TIM.h \
  /home/vicky/STM32CubeIDE/workspace_1.11.0/STM32F429_Empty_Project/BSP/Inc/SPI.h \
+ /home/vicky/STM32CubeIDE/workspace_1.11.0/STM32F429_Empty_Project/BSP/Inc/CAN.h \
  /home/vicky/STM32CubeIDE/workspace_1.11.0/STM32F429_Empty_Project/BSP/Inc/I2C.h \
  /home/vicky/STM32CubeIDE/workspace_1.11.0/STM32F429_Empty_Project/BSP/Inc/UART.h
-/home/vicky/STM32CubeIDE/workspace_1.11.0/STM32F429_Empty_Project/BSP/Inc/CAN.h:
+/home/vicky/STM32CubeIDE/workspace_1.11.0/STM32F429_Empty_Project/BSP/Inc/ADC.h:
 /home/vicky/STM32CubeIDE/workspace_1.11.0/STM32F429_Empty_Project/Task\ Schedular/Inc/main.h:
 /home/vicky/STM32CubeIDE/workspace_1.11.0/STM32F429_Empty_Project/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 /home/vicky/STM32CubeIDE/workspace_1.11.0/STM32F429_Empty_Project/Task\ Schedular/Inc/stm32f4xx_hal_conf.h:
@@ -121,5 +122,6 @@ BSP/Src/CAN.o: ../BSP/Src/CAN.c \
 /home/vicky/STM32CubeIDE/workspace_1.11.0/STM32F429_Empty_Project/BSP/Inc/GPIO.h:
 /home/vicky/STM32CubeIDE/workspace_1.11.0/STM32F429_Empty_Project/BSP/Inc/TIM.h:
 /home/vicky/STM32CubeIDE/workspace_1.11.0/STM32F429_Empty_Project/BSP/Inc/SPI.h:
+/home/vicky/STM32CubeIDE/workspace_1.11.0/STM32F429_Empty_Project/BSP/Inc/CAN.h:
 /home/vicky/STM32CubeIDE/workspace_1.11.0/STM32F429_Empty_Project/BSP/Inc/I2C.h:
 /home/vicky/STM32CubeIDE/workspace_1.11.0/STM32F429_Empty_Project/BSP/Inc/UART.h:
