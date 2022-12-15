@@ -40,15 +40,15 @@ void Clock_Enable(GPIO_TypeDef *port)
 		printf("Enter Valid Port\r\n");
 }
 
-void GPIO_Toggle(GPIO_TypeDef *port, uint16_t pin_number)
+inline void GPIO_Pin_Toggle(GPIO_TypeDef *port, uint16_t pin_number)
 {
 	HAL_GPIO_TogglePin(port, pin_number);
 }
-void GPIO_Pin_Set(GPIO_TypeDef *port, uint16_t pin_number)
+inline void GPIO_Pin_Set(GPIO_TypeDef *port, uint16_t pin_number)
 {
 	HAL_GPIO_WritePin(port, pin_number, GPIO_PIN_SET);
 }
-void GPIO_Pin_Reset(GPIO_TypeDef *port, uint16_t pin_number)
+inline void GPIO_Pin_Reset(GPIO_TypeDef *port, uint16_t pin_number)
 {
 	HAL_GPIO_WritePin(port, pin_number, GPIO_PIN_RESET);
 }

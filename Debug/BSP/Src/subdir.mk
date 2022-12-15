@@ -9,6 +9,7 @@ C_SRCS += \
 ../BSP/Src/GPIO.c \
 ../BSP/Src/I2C.c \
 ../BSP/Src/SPI.c \
+../BSP/Src/TIM.c \
 ../BSP/Src/UART.c 
 
 OBJS += \
@@ -16,6 +17,7 @@ OBJS += \
 ./BSP/Src/GPIO.o \
 ./BSP/Src/I2C.o \
 ./BSP/Src/SPI.o \
+./BSP/Src/TIM.o \
 ./BSP/Src/UART.o 
 
 C_DEPS += \
@@ -23,6 +25,7 @@ C_DEPS += \
 ./BSP/Src/GPIO.d \
 ./BSP/Src/I2C.d \
 ./BSP/Src/SPI.d \
+./BSP/Src/TIM.d \
 ./BSP/Src/UART.d 
 
 
@@ -33,7 +36,7 @@ BSP/Src/%.o BSP/Src/%.su: ../BSP/Src/%.c BSP/Src/subdir.mk
 clean: clean-BSP-2f-Src
 
 clean-BSP-2f-Src:
-	-$(RM) ./BSP/Src/CAN.d ./BSP/Src/CAN.o ./BSP/Src/CAN.su ./BSP/Src/GPIO.d ./BSP/Src/GPIO.o ./BSP/Src/GPIO.su ./BSP/Src/I2C.d ./BSP/Src/I2C.o ./BSP/Src/I2C.su ./BSP/Src/SPI.d ./BSP/Src/SPI.o ./BSP/Src/SPI.su ./BSP/Src/UART.d ./BSP/Src/UART.o ./BSP/Src/UART.su
+	-$(RM) ./BSP/Src/CAN.d ./BSP/Src/CAN.o ./BSP/Src/CAN.su ./BSP/Src/GPIO.d ./BSP/Src/GPIO.o ./BSP/Src/GPIO.su ./BSP/Src/I2C.d ./BSP/Src/I2C.o ./BSP/Src/I2C.su ./BSP/Src/SPI.d ./BSP/Src/SPI.o ./BSP/Src/SPI.su ./BSP/Src/TIM.d ./BSP/Src/TIM.o ./BSP/Src/TIM.su ./BSP/Src/UART.d ./BSP/Src/UART.o ./BSP/Src/UART.su
 
 .PHONY: clean-BSP-2f-Src
 

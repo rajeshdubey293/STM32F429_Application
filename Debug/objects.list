@@ -2,6 +2,7 @@
 "./BSP/Src/GPIO.o"
 "./BSP/Src/I2C.o"
 "./BSP/Src/SPI.o"
+"./BSP/Src/TIM.o"
 "./BSP/Src/UART.o"
 "./Drivers/STM32F4xx_HAL_Driver/Src/Legacy/stm32f4xx_hal_can.o"
 "./Drivers/STM32F4xx_HAL_Driver/Src/Legacy/stm32f4xx_hal_eth.o"

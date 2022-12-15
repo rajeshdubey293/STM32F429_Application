@@ -34,7 +34,15 @@ extern "C" {
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f4xx_hal.h"
+
 #include "GPIO.h"
+#include "TIM.h"
+#include "SPI.h"
+#include "CAN.h"
+#include "I2C.h"
+#include "UART.h"
+
+/*   Driver Function */
 
 void Error_Handler(void);
 void SystemClock_Config(void);
