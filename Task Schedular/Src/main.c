@@ -2,19 +2,27 @@
 
 uint32_t led1_Counter = 0;
 uint32_t led2_Counter = 0;
-uint32_t uart_Counter = 0;
-uint32_t i = 0;
+uint32_t sc_Counter = 0;
+
+char rx_Buffer;
+char tempValue[10] = {0};
+
+extern char LED1_ON_FLAG;
+extern char LED2_ON_FLAG;
 int main(void)
 {
 	HAL_Init();
 	SystemClock_Config();
 
-	Clock_Enable(GPIOG);
 	Timer_Init(TIM6);
 	UART_Init();
+	I2C_Init();
+
 	GPIO_Init(GPIOG, GPIO_PIN_14);
 	GPIO_Init(GPIOG, GPIO_PIN_13);
+
 	Timer_Start_IT();
+	UART_Interrupt_Start(&rx_Buffer);
 
 	/* Loop forever */
 	for(;;)
@@ -25,27 +33,23 @@ int main(void)
 
 			led1_Counter += SysTick_Get();
 			led2_Counter += SysTick_Get();
-			uart_Counter += SysTick_Get();
+			sc_Counter += SysTick_Get();
 			SysTick_Set(0);
-			if(led1_Counter >= 100)
+			if(LED1_ON_FLAG == 1)
 			{
-				led1_Counter = 0;
+				LED1_ON_FLAG = 0;
 				GPIO_Pin_Toggle(GPIOG, GPIO_PIN_13);
 			}
-			if(led2_Counter >= 100)
+
+			if(LED2_ON_FLAG == 1)
 			{
-				led2_Counter = 0;
+				LED2_ON_FLAG = 0;
 				GPIO_Pin_Toggle(GPIOG, GPIO_PIN_14);
 			}
-			if(uart_Counter >= 10)
+			if(sc_Counter >= 10)
 			{
-				uart_Counter = 0;
-				Print_Msg("Hello From STM32F429 %d\r\n", i++);
-				if(i == (65535))
-				{
-					i = 0;
-				}
-
+				sc_Counter = 0;
+				SC_Process();
 			}
 		}
 	}
@@ -102,13 +106,13 @@ void SystemClock_Config(void)
 
 void Error_Handler(void)
 {
-	/* USER CODE BEGIN Error_Handler_Debug */
 	/* User can add his own implementation to report the HAL error return state */
 	__disable_irq();
 	while (1)
 	{
+
 	}
-	/* USER CODE END Error_Handler_Debug */
+
 }
 
 

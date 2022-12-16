@@ -1,0 +1,5 @@
+../Serial Communication/Src/SC_Process.c:25:6:SC_Process	8	static
+../Serial Communication/Src/SC_Process.c:67:6:Show_Debug_Menu	8	static
+../Serial Communication/Src/SC_Process.c:82:6:Show_Main_Menu	8	static
+../Serial Communication/Src/SC_Process.c:91:6:Debug_Menu_Decode	16	static
+../Serial Communication/Src/SC_Process.c:149:16:Authenticated_User	8	static

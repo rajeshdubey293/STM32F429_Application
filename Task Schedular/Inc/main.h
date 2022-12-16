@@ -35,12 +35,17 @@ extern "C" {
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f4xx_hal.h"
 
+/*   BSP Includes */
 #include "GPIO.h"
 #include "TIM.h"
 #include "SPI.h"
 #include "CAN.h"
 #include "I2C.h"
 #include "UART.h"
+
+/* Application Includes */
+
+#include "SC_Process.h"
 
 /*   Driver Function */
 

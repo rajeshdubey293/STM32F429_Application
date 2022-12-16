@@ -27,6 +27,7 @@ SUBDIRS := \
 BSP/Src \
 Drivers/STM32F4xx_HAL_Driver/Src/Legacy \
 Drivers/STM32F4xx_HAL_Driver/Src \
+Serial\ Communication/Src \
 Startup \
 Task\ Schedular/Src \
 

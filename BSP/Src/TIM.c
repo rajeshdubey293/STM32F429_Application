@@ -31,7 +31,7 @@ inline void Timer_Start_IT(void)
 	HAL_TIM_Base_Start_IT(&htim);
 }
 
-void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+inline void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
 	sysTick++;
 }

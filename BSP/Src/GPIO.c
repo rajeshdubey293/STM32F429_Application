@@ -10,7 +10,7 @@
 void GPIO_Init(GPIO_TypeDef *port, uint16_t pin_number)
 {
 	GPIO_InitTypeDef gpio_init_struct = {0};
-
+	Clock_Enable(port);
 	gpio_init_struct.Pin = pin_number;
 	gpio_init_struct.Mode = GPIO_MODE_OUTPUT_PP;
 	gpio_init_struct.Pull = GPIO_NOPULL;

@@ -60,7 +60,8 @@ Task Schedular/Src/main.o: ../Task\ Schedular/Src/main.c \
  /home/vicky/STM32CubeIDE/workspace_1.11.0/STM32F429_Empty_Project/BSP/Inc/SPI.h \
  /home/vicky/STM32CubeIDE/workspace_1.11.0/STM32F429_Empty_Project/BSP/Inc/CAN.h \
  /home/vicky/STM32CubeIDE/workspace_1.11.0/STM32F429_Empty_Project/BSP/Inc/I2C.h \
- /home/vicky/STM32CubeIDE/workspace_1.11.0/STM32F429_Empty_Project/BSP/Inc/UART.h
+ /home/vicky/STM32CubeIDE/workspace_1.11.0/STM32F429_Empty_Project/BSP/Inc/UART.h \
+ /home/vicky/STM32CubeIDE/workspace_1.11.0/STM32F429_Empty_Project/Serial\ Communication/Inc/SC_Process.h
 /home/vicky/STM32CubeIDE/workspace_1.11.0/STM32F429_Empty_Project/Task\ Schedular/Inc/main.h:
 /home/vicky/STM32CubeIDE/workspace_1.11.0/STM32F429_Empty_Project/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 /home/vicky/STM32CubeIDE/workspace_1.11.0/STM32F429_Empty_Project/Task\ Schedular/Inc/stm32f4xx_hal_conf.h:
@@ -123,3 +124,4 @@ Task Schedular/Src/main.o: ../Task\ Schedular/Src/main.c \
 /home/vicky/STM32CubeIDE/workspace_1.11.0/STM32F429_Empty_Project/BSP/Inc/CAN.h:
 /home/vicky/STM32CubeIDE/workspace_1.11.0/STM32F429_Empty_Project/BSP/Inc/I2C.h:
 /home/vicky/STM32CubeIDE/workspace_1.11.0/STM32F429_Empty_Project/BSP/Inc/UART.h:
+/home/vicky/STM32CubeIDE/workspace_1.11.0/STM32F429_Empty_Project/Serial\ Communication/Inc/SC_Process.h:

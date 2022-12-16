@@ -11,6 +11,7 @@ RM := rm -rf
 -include sources.mk
 -include Task\ Schedular/Src/subdir.mk
 -include Startup/subdir.mk
+-include Serial\ Communication/Src/subdir.mk
 -include Drivers/STM32F4xx_HAL_Driver/Src/Legacy/subdir.mk
 -include Drivers/STM32F4xx_HAL_Driver/Src/subdir.mk
 -include BSP/Src/subdir.mk
