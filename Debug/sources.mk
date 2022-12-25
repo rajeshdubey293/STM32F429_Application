@@ -27,6 +27,9 @@ SUBDIRS := \
 BSP/Src \
 Drivers/STM32F4xx_HAL_Driver/Src/Legacy \
 Drivers/STM32F4xx_HAL_Driver/Src \
+Middleware/FreeRTOS/Source \
+Middleware/FreeRTOS/Source/portable/GCC/ARM_CM4F \
+Middleware/FreeRTOS/Source/portable/MemMang \
 Serial\ Communication/Src \
 Startup \
 Task\ Schedular/Src \

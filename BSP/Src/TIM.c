@@ -6,16 +6,19 @@
  */
 #include "TIM.h"
 
-TIM_HandleTypeDef htim;
+TIM_HandleTypeDef htim6;
 
 volatile uint32_t sysTick = 0;;
 
+/*
+ * Timer init function
+ */
 void Timer_Init(TIM_TypeDef *Timer)
 {
-	htim.Instance = Timer;
-	htim.Init.Prescaler = 1;
-	htim.Init.Period = 20000-1;
-	if(HAL_TIM_Base_Init(&htim) != HAL_OK)
+	htim6.Instance = Timer;
+	htim6.Init.Prescaler = 1;
+	htim6.Init.Period = 20000-1;
+	if(HAL_TIM_Base_Init(&htim6) != HAL_OK)
 	{
 		Error_Handler();
 	}
@@ -23,17 +26,23 @@ void Timer_Init(TIM_TypeDef *Timer)
 
 inline void Timer_Start(void)
 {
-	HAL_TIM_Base_Start(&htim);
+	HAL_TIM_Base_Start(&htim6);
 }
 
 inline void Timer_Start_IT(void)
 {
-	HAL_TIM_Base_Start_IT(&htim);
+	HAL_TIM_Base_Start_IT(&htim6);
 }
 
 inline void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
-	sysTick++;
+	if (htim->Instance == TIM7) {
+		HAL_IncTick();
+	}
+	if (htim->Instance == TIM6) {
+		sysTick++;
+	}
+
 }
 inline uint32_t SysTick_Get(void)
 {

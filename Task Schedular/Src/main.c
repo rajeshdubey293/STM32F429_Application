@@ -1,5 +1,12 @@
 #include "main.h"
 
+
+#define RTOS_APP 1    // Enable RTOS based application
+
+
+//static void Task1_Handler(void* parameters);
+//static void Task2_Handler(void* parameters);
+
 uint32_t led1_Counter = 0;
 uint32_t led2_Counter = 0;
 uint32_t sc_Counter = 0;
@@ -9,6 +16,7 @@ char tempValue[10] = {0};
 
 extern char LED1_ON_FLAG;
 extern char LED2_ON_FLAG;
+
 int main(void)
 {
 	HAL_Init();
@@ -24,35 +32,15 @@ int main(void)
 	Timer_Start_IT();
 	UART_Interrupt_Start(&rx_Buffer);
 
-	/* Loop forever */
-	for(;;)
-	{
+#if RTOS_APP // RTOS Based Application
 
-		if(SysTick_Get() > 0)
-		{
+	RTOS_Application();
 
-			led1_Counter += SysTick_Get();
-			led2_Counter += SysTick_Get();
-			sc_Counter += SysTick_Get();
-			SysTick_Set(0);
-			if(LED1_ON_FLAG == 1)
-			{
-				LED1_ON_FLAG = 0;
-				GPIO_Pin_Toggle(GPIOG, GPIO_PIN_13);
-			}
+#else // Non RTOS Based Application
 
-			if(LED2_ON_FLAG == 1)
-			{
-				LED2_ON_FLAG = 0;
-				GPIO_Pin_Toggle(GPIOG, GPIO_PIN_14);
-			}
-			if(sc_Counter >= 10)
-			{
-				sc_Counter = 0;
-				SC_Process();
-			}
-		}
-	}
+	Non_RTOS_Application();
+
+#endif
 }
 
 void SystemClock_Config(void)
@@ -115,4 +103,71 @@ void Error_Handler(void)
 
 }
 
+void RTOS_Application(void)
+{
+	TaskHandle_t task1_handler, task2_handler;
+	BaseType_t status;
 
+	status = xTaskCreate(Task1_Handler, "Task-1", 200, "Hello From Task-1", 2, &task1_handler);
+	configASSERT(status == pdPASS);
+
+	status = xTaskCreate(Task2_Handler, "Task-2", 200, "Hello From Task-2", 2, &task2_handler);
+	configASSERT(status == pdPASS);
+
+	vTaskStartScheduler(); // Start FreeRTOS Scheduler
+}
+
+void Non_RTOS_Application(void)
+{
+	/* Loop forever */
+	for(;;)
+	{
+		if(SysTick_Get() > 0)
+		{
+
+			led1_Counter += SysTick_Get();
+			led2_Counter += SysTick_Get();
+			sc_Counter += SysTick_Get();
+			SysTick_Set(0);
+			if(LED1_ON_FLAG == 1)
+			{
+				LED1_ON_FLAG = 0;
+				GPIO_Pin_Toggle(GPIOG, GPIO_PIN_13);
+			}
+
+			if(LED2_ON_FLAG == 1)
+			{
+				LED2_ON_FLAG = 0;
+				GPIO_Pin_Toggle(GPIOG, GPIO_PIN_14);
+			}
+			if(sc_Counter >= 10)
+			{
+				sc_Counter = 0;
+				SC_Process();
+			}
+		}
+	}
+}
+
+void Task1_Handler(void* parameters)
+{
+	uint32_t counter = 0;
+	/* Loop forever */
+	for(;;)
+	{
+		Print_Msg("%s %d\r\n", (char*)parameters, counter++);
+		GPIO_Pin_Toggle(GPIOG, GPIO_PIN_13);
+		taskYIELD(); // context switching manually
+	}
+}
+void Task2_Handler(void* parameters)
+{
+	uint32_t counter = 0;
+	/* Loop forever */
+	for(;;)
+	{
+		Print_Msg("%s %d\r\n", (char*)parameters, counter++);
+		GPIO_Pin_Toggle(GPIOG, GPIO_PIN_14);
+		taskYIELD(); // context switching manually
+	}
+}

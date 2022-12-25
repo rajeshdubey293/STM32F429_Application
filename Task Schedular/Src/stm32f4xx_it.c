@@ -99,18 +99,7 @@ void UsageFault_Handler(void)
 	}
 }
 
-/**
- * @brief This function handles System service call via SWI instruction.
- */
-void SVC_Handler(void)
-{
-	/* USER CODE BEGIN SVCall_IRQn 0 */
 
-	/* USER CODE END SVCall_IRQn 0 */
-	/* USER CODE BEGIN SVCall_IRQn 1 */
-
-	/* USER CODE END SVCall_IRQn 1 */
-}
 
 /**
  * @brief This function handles Debug monitor.
@@ -126,26 +115,15 @@ void DebugMon_Handler(void)
 }
 
 /**
- * @brief This function handles Pendable request for system service.
- */
-void PendSV_Handler(void)
-{
-	/* USER CODE BEGIN PendSV_IRQn 0 */
-
-	/* USER CODE END PendSV_IRQn 0 */
-	/* USER CODE BEGIN PendSV_IRQn 1 */
-
-	/* USER CODE END PendSV_IRQn 1 */
-}
-
-/**
  * @brief This function handles System tick timer.
  */
+#if 0
 void SysTick_Handler(void)
 {
 	HAL_IncTick();
 	HAL_SYSTICK_IRQHandler();
 }
+#endif
 
 /******************************************************************************/
 /* STM32F4xx Peripheral Interrupt Handlers                                    */
@@ -154,14 +132,27 @@ void SysTick_Handler(void)
 /* please refer to the startup file (startup_stm32f4xx.s).                    */
 /******************************************************************************/
 
-extern TIM_HandleTypeDef htim;
+extern TIM_HandleTypeDef htim6;
 extern UART_HandleTypeDef huart1;
-
+extern TIM_HandleTypeDef htim7;
+/**
+  * @brief This function handles TIM6 global interrupt.
+  */
 void TIM6_DAC_IRQHandler(void)
 {
-	HAL_TIM_IRQHandler(&htim);
+	HAL_TIM_IRQHandler(&htim6);
 }
+/**
+  * @brief This function handles USART1 global interrupt.
+  */
 void USART1_IRQHandler(void)
 {
 	HAL_UART_IRQHandler(&huart1);
+}
+/**
+  * @brief This function handles TIM7 global interrupt.
+  */
+void TIM7_IRQHandler(void)
+{
+  HAL_TIM_IRQHandler(&htim7);
 }

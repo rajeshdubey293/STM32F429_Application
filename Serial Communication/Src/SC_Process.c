@@ -22,6 +22,8 @@ char user_Pass_Array[10] = {0};
 char *user_Name = "admin";
 char *user_Pass = "password";
 
+char *sw_Version = "V1.0 Beta\r\n";
+
 void SC_Process(void)
 {
 	if(Authenticated_User() != USER_AUTHENICATED)
@@ -73,7 +75,7 @@ void Show_Debug_Menu(void)
 	Print_Msg("\t4. Turn ON Green LED \r\n");
 	Print_Msg("\t5. Turn OFF Green LED \r\n");
 	Print_Msg("\t6. Software Version \r\n");
-	Print_Msg("\t7. Reserved for Future Use \r\n");
+	Print_Msg("\t7. Change User Password \r\n");
 	Print_Msg("\t8. Reserved for Future Use \r\n");
 	Print_Msg("\t9. Back To Main Menu\r\n\n");
 	//Print_Msg("*********************************************\r\n\n");
@@ -126,8 +128,11 @@ void Debug_Menu_Decode(char debug_Option)
 		break;
 
 	case SOFTWARE_VERSION:
-		Print_Msg("Beta Release\r\n");
+		Print_Msg("%s", sw_Version);
 		sc_Debug_Option = DEBUG_MENU;
+		break;
+
+	case CHANGE_PASS:
 		break;
 
 	case RET_MAIN_MENU:

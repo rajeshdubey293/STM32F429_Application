@@ -46,11 +46,23 @@ extern "C" {
 /* Application Includes */
 
 #include "SC_Process.h"
+#include "FreeRTOS.h"
+#include "task.h"
+
+//#define RTOS_Application	RTOS_Application() 		// RTOS Application function
+//#define Non_RTOS_Application	Non_RTOS_Application() 	// Non RTOS Application function
 
 /*   Driver Function */
 
 void Error_Handler(void);
 void SystemClock_Config(void);
+
+/*  RTOS Related Function Declaration */
+
+void RTOS_Application(void);
+void Non_RTOS_Application(void);
+void Task1_Handler(void* parameters);
+void Task2_Handler(void* parameters);
 
 #ifdef __cplusplus
 }
