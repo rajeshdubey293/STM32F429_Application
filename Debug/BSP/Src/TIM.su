@@ -1,6 +1,0 @@
-../BSP/Src/TIM.c:16:6:Timer_Init	16	static
-../BSP/Src/TIM.c:27:13:Timer_Start	8	static
-../BSP/Src/TIM.c:32:13:Timer_Start_IT	8	static
-../BSP/Src/TIM.c:37:13:HAL_TIM_PeriodElapsedCallback	16	static
-../BSP/Src/TIM.c:47:17:SysTick_Get	4	static
-../BSP/Src/TIM.c:51:13:SysTick_Set	16	static

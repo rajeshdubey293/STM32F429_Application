@@ -1,5 +1,0 @@
-../BSP/Src/I2C.c:12:6:I2C_Init	8	static
-../BSP/Src/I2C.c:43:13:I2C_Mem_Write	40	static
-../BSP/Src/I2C.c:48:13:I2C_Mem_Read	40	static
-../BSP/Src/I2C.c:53:13:I2C_Write	24	static
-../BSP/Src/I2C.c:57:13:I2C_Read	24	static
