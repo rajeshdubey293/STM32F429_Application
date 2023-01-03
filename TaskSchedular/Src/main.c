@@ -1,11 +1,15 @@
-#include "main.h"
+#include "../../TaskSchedular/Inc/main.h"
 
 
-#define RTOS_APP 1    // Enable RTOS based application
+#define RTOS_APP 0    // Enable RTOS based application
 
 
-//static void Task1_Handler(void* parameters);
-//static void Task2_Handler(void* parameters);
+static void Task1_Handler(void* parameters);
+static void Task2_Handler(void* parameters);
+
+I2C_HandleTypeDef hi2c1;
+TIM_HandleTypeDef htim6;
+UART_HandleTypeDef huart1;
 
 uint32_t led1_Counter = 0;
 uint32_t led2_Counter = 0;
@@ -13,6 +17,8 @@ uint32_t sc_Counter = 0;
 
 char rx_Buffer;
 char tempValue[10] = {0};
+
+MPU6050_t MPU_Data = {0};
 
 extern char LED1_ON_FLAG;
 extern char LED2_ON_FLAG;
@@ -22,16 +28,19 @@ int main(void)
 	HAL_Init();
 	SystemClock_Config();
 
-	Timer_Init(TIM6);
-	UART_Init();
-	I2C_Init();
+	TIMER6_Init(&htim6);
+	UART1_Init(&huart1);
+	I2C1_Init(&hi2c1);
+
+	MPU6050_Init(&hi2c1);
 
 	GPIO_Init(GPIOG, GPIO_PIN_14);
 	GPIO_Init(GPIOG, GPIO_PIN_13);
 
-	Timer_Start_IT();
-	UART_Interrupt_Start(&rx_Buffer);
+	TIMER_Start_IT(&htim6);
+	UART_Interrupt_Start(&huart1, &rx_Buffer);
 
+	Print_Msg("Welcome to STM32F429 Application Menu\r\n");
 #if RTOS_APP // RTOS Based Application
 
 	RTOS_Application();

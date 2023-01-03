@@ -8,7 +8,7 @@
 #ifndef INC_SC_PROCESS_H_
 #define INC_SC_PROCESS_H_
 
-#include "main.h"
+#include "../../TaskSchedular/Inc/main.h"
 
 
 
@@ -30,6 +30,7 @@ typedef enum
 	LED2_OFF,
 	SOFTWARE_VERSION,
 	CHANGE_PASS,
+	MPU6050,
 	RET_MAIN_MENU = '9',
 	DEBUG_MENU_UNKNOWN,
 	DEBUG_MENU
@@ -44,9 +45,17 @@ typedef enum
 	USER_UNKNOWN
 }SC_User_Decode;
 
+typedef enum
+{
+	DISPLAY_MPU_DATA = '1',
+	FALSE
+
+}SC_Process_Debug_Code;
+
 void SC_Process(void);
 void Debug_Menu_Decode(char debug_Option);
 void Show_Main_Menu(void);
+void SC_Check_Debug_Code(void);
 SC_User_Decode Authenticated_User(void);
 
 

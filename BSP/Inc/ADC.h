@@ -8,7 +8,7 @@
 #ifndef INC_ADC_H_
 #define INC_ADC_H_
 
-#include "main.h"
+#include "../../TaskSchedular/Inc/main.h"
 
 void ADC_Init(void);
 

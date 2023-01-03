@@ -8,13 +8,13 @@
 #ifndef INC_TIM_H_
 #define INC_TIM_H_
 
-#include "main.h"
+#include "../../TaskSchedular/Inc/main.h"
 
 
-void Timer_Init(TIM_TypeDef *timer);
+void TIMER6_Init(TIM_HandleTypeDef *htim6);
 
-void Timer_Start(void);
-void Timer_Start_IT(void);
+void TIMER_Start(TIM_HandleTypeDef *htim);
+void TIMER_Start_IT(TIM_HandleTypeDef *htim);
 
 void SysTick_Set(uint8_t tmpSysTick);
 uint32_t SysTick_Get(void);

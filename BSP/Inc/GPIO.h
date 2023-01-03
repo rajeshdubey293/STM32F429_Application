@@ -8,7 +8,7 @@
 #ifndef INC_GPIO_H_
 #define INC_GPIO_H_
 
-#include "main.h"
+#include "../../TaskSchedular/Inc/main.h"
 
 
 void GPIO_Init(GPIO_TypeDef *port, uint16_t pin_number);

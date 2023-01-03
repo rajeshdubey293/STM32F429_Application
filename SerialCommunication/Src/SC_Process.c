@@ -4,7 +4,7 @@
  *  Created on: 16-Dec-2022
  *      Author: vicky
  */
-#include "SC_Process.h"
+#include "../../SerialCommunication/Inc/SC_Process.h"
 
 char sc_Rx_Buffer;
 
@@ -15,6 +15,9 @@ uint8_t i = 0;
 SC_Decode_Main_Menu sc_Option = MAIN_MENU_UNKNOWN;
 SC_Decode_Debug sc_Debug_Option = DEBUG_MENU_UNKNOWN;
 SC_User_Decode sc_User_State = USER_UNKNOWN;
+SC_Process_Debug_Code sc_Process_Debug_Code = FALSE;
+
+extern MPU6050_t MPU_Data;
 
 char user_Name_Array[10] = {0};
 char user_Pass_Array[10] = {0};
@@ -23,6 +26,7 @@ char *user_Name = "admin";
 char *user_Pass = "password";
 
 char *sw_Version = "V1.0 Beta\r\n";
+extern I2C_HandleTypeDef hi2c1;
 
 void SC_Process(void)
 {
@@ -64,6 +68,7 @@ void SC_Process(void)
 			sc_Option = MAIN_MENU;
 		}
 	}
+	SC_Check_Debug_Code();
 }
 
 void Show_Debug_Menu(void)
@@ -76,7 +81,7 @@ void Show_Debug_Menu(void)
 	Print_Msg("\t5. Turn OFF Green LED \r\n");
 	Print_Msg("\t6. Software Version \r\n");
 	Print_Msg("\t7. Change User Password \r\n");
-	Print_Msg("\t8. Reserved for Future Use \r\n");
+	Print_Msg("\t8. Read MPU6050 Data \r\n");
 	Print_Msg("\t9. Back To Main Menu\r\n\n");
 	//Print_Msg("*********************************************\r\n\n");
 	Print_Msg("**********************************\r\n\n");
@@ -135,8 +140,21 @@ void Debug_Menu_Decode(char debug_Option)
 	case CHANGE_PASS:
 		break;
 
+	case MPU6050:
+		if(sc_Process_Debug_Code == DISPLAY_MPU_DATA)
+		{
+			sc_Process_Debug_Code = FALSE;
+		}
+		else
+		{
+			sc_Process_Debug_Code = DISPLAY_MPU_DATA;
+		}
+		sc_Debug_Option = DEBUG_MENU;
+		break;
+
 	case RET_MAIN_MENU:
 		sc_Debug_Option = DEBUG_MENU_UNKNOWN;
+		sc_Process_Debug_Code = FALSE;
 		break;
 
 	case DEBUG_MENU_UNKNOWN:
@@ -213,4 +231,17 @@ SC_User_Decode Authenticated_User(void)
 	}
 
 	return sc_User_State;
+}
+void SC_Check_Debug_Code(void)
+{
+	switch(sc_Process_Debug_Code)
+	{
+		case DISPLAY_MPU_DATA:
+			MPU6050_Read_All(&hi2c1, &MPU_Data);
+			Display_MPU6050_Data(&MPU_Data);
+			break;
+
+		default:
+			break;
+	}
 }

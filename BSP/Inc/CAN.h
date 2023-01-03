@@ -8,7 +8,7 @@
 #ifndef INC_CAN_H_
 #define INC_CAN_H_
 
-#include "main.h"
+#include "../../TaskSchedular/Inc/main.h"
 
 
 #endif /* INC_CAN_H_ */
