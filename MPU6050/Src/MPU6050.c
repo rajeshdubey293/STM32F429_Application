@@ -68,6 +68,10 @@ uint8_t MPU6050_Init(I2C_HandleTypeDef *I2Cx)
 		I2C_Mem_Write(I2Cx, MPU6050_ADDR, GYRO_CONFIG_REG, 1, &Data, 1);
 		return 0;
 	}
+	else
+	{
+		Print_Msg("MPU6050 is Not Connected\r\n");
+	}
 	return 1;
 }
 
@@ -128,11 +132,16 @@ void MPU6050_Read_Temp(I2C_HandleTypeDef *I2Cx, MPU6050_t *DataStruct)
 	DataStruct->Temperature = (float)((int16_t)temp / (float)340.0 + (float)36.53);
 }
 
-void MPU6050_Read_All(I2C_HandleTypeDef *I2Cx, MPU6050_t *DataStruct)
+uint8_t MPU6050_Read_All(I2C_HandleTypeDef *I2Cx, MPU6050_t *DataStruct)
 {
 	uint8_t Rec_Data[14];
 	int16_t temp;
 
+	uint8_t ret_Value = HAL_I2C_IsDeviceReady(I2Cx, MPU6050_ADDR, 2, 100);
+	if(ret_Value != HAL_OK)
+	{
+		return -1;
+	}
 	// Read 14 BYTES of data starting from ACCEL_XOUT_H register
 
 	I2C_Mem_Read(I2Cx, MPU6050_ADDR, ACCEL_XOUT_H_REG, 1, Rec_Data, 14);
@@ -180,6 +189,7 @@ void MPU6050_Read_All(I2C_HandleTypeDef *I2Cx, MPU6050_t *DataStruct)
 	if (fabs(DataStruct->KalmanAngleY) > 90)
 		DataStruct->Gx = -DataStruct->Gx;
 	DataStruct->KalmanAngleX = Kalman_getAngle(&KalmanX, roll, DataStruct->Gx, dt);
+	return 1;
 }
 
 double Kalman_getAngle(Kalman_t *Kalman, double newAngle, double newRate, double dt)

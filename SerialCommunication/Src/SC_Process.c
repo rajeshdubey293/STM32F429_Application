@@ -52,6 +52,7 @@ void SC_Process(void)
 			}
 			break;
 		case BOOTLOADER_MODE:
+			Boot_Into_Bootloader();
 			break;
 		case EXIT:
 			sc_Option = MAIN_MENU_UNKNOWN;
@@ -237,11 +238,22 @@ void SC_Check_Debug_Code(void)
 	switch(sc_Process_Debug_Code)
 	{
 		case DISPLAY_MPU_DATA:
-			MPU6050_Read_All(&hi2c1, &MPU_Data);
+			if(MPU6050_Read_All(&hi2c1, &MPU_Data))
+			{
+				Print_Msg("MPU6050 is Not Connected\r\n");
+				break;
+			}
 			Display_MPU6050_Data(&MPU_Data);
 			break;
 
 		default:
 			break;
 	}
+}
+void Boot_Into_Bootloader()
+{
+	uint8_t tempBuffer = 1;
+	Execute_Flash_Erase(5, 1);
+	Execute_Mem_Write(&tempBuffer, (uint32_t)UPGRADE_APPLICATION_CHECK_ADDR, 1);
+	NVIC_SystemReset();
 }

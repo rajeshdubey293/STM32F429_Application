@@ -42,6 +42,7 @@ extern "C" {
 #include "CAN.h"
 #include "I2C.h"
 #include "UART.h"
+#include "Flash.h"
 
 /* Application Includes */
 

@@ -57,6 +57,7 @@ void Debug_Menu_Decode(char debug_Option);
 void Show_Main_Menu(void);
 void SC_Check_Debug_Code(void);
 SC_User_Decode Authenticated_User(void);
+void Boot_Into_Bootloader();
 
 
 
