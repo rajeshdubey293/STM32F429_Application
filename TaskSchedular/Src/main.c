@@ -34,8 +34,8 @@ int main(void)
 
 	MPU6050_Init(&hi2c1);
 
-	GPIO_Init(GPIOG, GPIO_PIN_14);
-	GPIO_Init(GPIOG, GPIO_PIN_13);
+	GPIO_Init(RED_LED_PORT, RED_LED_PIN, OUTPUT);
+	GPIO_Init(GREEN_LED_PORT, GREEN_LED_PIN, OUTPUT);
 
 	TIMER_Start_IT(&htim6);
 	UART_Interrupt_Start(&huart1, &rx_Buffer);
@@ -71,7 +71,7 @@ void SystemClock_Config(void)
 	RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
 	RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
 	RCC_OscInitStruct.PLL.PLLM = 4;
-	RCC_OscInitStruct.PLL.PLLN = 80;
+	RCC_OscInitStruct.PLL.PLLN = 180;
 	RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
 	RCC_OscInitStruct.PLL.PLLQ = 7;
 	if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
@@ -112,7 +112,7 @@ void Error_Handler(void)
 
 }
 
-void RTOS_Application(void)
+inline void RTOS_Application(void)
 {
 	TaskHandle_t task1_handler, task2_handler;
 	BaseType_t status;
@@ -126,14 +126,13 @@ void RTOS_Application(void)
 	vTaskStartScheduler(); // Start FreeRTOS Scheduler
 }
 
-void Non_RTOS_Application(void)
+inline void Non_RTOS_Application(void)
 {
 	/* Loop forever */
 	for(;;)
 	{
 		if(SysTick_Get() > 0)
 		{
-
 			led1_Counter += SysTick_Get();
 			led2_Counter += SysTick_Get();
 			sc_Counter += SysTick_Get();

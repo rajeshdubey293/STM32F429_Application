@@ -12,6 +12,7 @@ extern uint8_t rx_Buffer;
 char byte_Available = 0;
 extern UART_HandleTypeDef huart1;
 
+
 void UART1_Init(UART_HandleTypeDef *huart1)
 {
 	huart1->Instance = USART1;
@@ -65,12 +66,13 @@ void UART3_Init(UART_HandleTypeDef *huart3)
 
 void Print_Msg(char *format,...)
 {
-	char tx_Buffer[100];
+	char tx_Buffer[3000];
 	/*Extract the the argument list using VA APIS */
 	va_list args;
 	va_start(args, format);
 	vsprintf(tx_Buffer, format,args);
-	HAL_UART_Transmit(&huart1,(uint8_t *)tx_Buffer, strlen(tx_Buffer), 10);
+	//HAL_UART_Transmit_IT(&huart1,(uint8_t *)tx_Buffer, strlen(tx_Buffer));
+	HAL_UART_Transmit(&huart1,(uint8_t *)tx_Buffer, strlen(tx_Buffer), HAL_MAX_DELAY);
 	va_end(args);
 }
 inline void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
@@ -96,3 +98,8 @@ inline int8_t UART_Rx_Byte_Available(void)
 {
 	return byte_Available;
 }
+inline uint16_t UART_Get_Tx_Byte_Count(void)
+{
+	return huart1.TxXferCount;
+}
+

@@ -252,8 +252,8 @@ void SC_Check_Debug_Code(void)
 }
 void Boot_Into_Bootloader()
 {
-	uint8_t tempBuffer = 1;
-	Execute_Flash_Erase(5, 1);
-	Execute_Mem_Write(&tempBuffer, (uint32_t)UPGRADE_APPLICATION_CHECK_ADDR, 1);
-	NVIC_SystemReset();
+	uint32_t tempBuffer = 0xAABBCCDD;
+	Execute_Flash_Erase(UPGRADE_APPLICATION_CHECK_ADDR, 1);
+	Execute_Mem_Write((uint8_t*)&tempBuffer, (uint32_t)UPGRADE_APPLICATION_CHECK_ADDR, 4);
+	__NVIC_SystemReset();
 }

@@ -103,6 +103,7 @@ _ssize_t _write(int file, const void *ptr, size_t len) {
   return len;
 }
 
+
 /*********************************************************************
 *
 *       _write_r()
