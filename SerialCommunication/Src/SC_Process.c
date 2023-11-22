@@ -25,7 +25,7 @@ char user_Pass_Array[10] = {0};
 char *user_Name = "admin";
 char *user_Pass = "password";
 
-char *sw_Version = "V1.0 Beta\r\n";
+char *sw_Version = "V2.0\r\n";
 extern I2C_HandleTypeDef hi2c1;
 
 void SC_Process(void)
@@ -233,8 +233,7 @@ SC_User_Decode Authenticated_User(void)
 
 	return sc_User_State;
 }
-void SC_Check_Debug_Code(void)
-{
+void SC_Check_Debug_Code(void) {
 	switch(sc_Process_Debug_Code)
 	{
 		case DISPLAY_MPU_DATA:
@@ -250,10 +249,9 @@ void SC_Check_Debug_Code(void)
 			break;
 	}
 }
-void Boot_Into_Bootloader()
-{
-	uint32_t tempBuffer = 0xAABBCCDD;
-	Execute_Flash_Erase(UPGRADE_APPLICATION_CHECK_ADDR, 1);
-	Execute_Mem_Write((uint8_t*)&tempBuffer, (uint32_t)UPGRADE_APPLICATION_CHECK_ADDR, 4);
+void Boot_Into_Bootloader() {
+	uint32_t temp_buffer = APP_UPGRADE_PENDING;
+	Execute_Flash_Erase(APP_UPGRADE_CHECK_ADDR, 1);
+	Execute_Mem_Write( (uint8_t*)&temp_buffer, APP_UPGRADE_CHECK_ADDR, 4);
 	__NVIC_SystemReset();
 }

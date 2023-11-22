@@ -8,7 +8,7 @@
 
 #include "Flash.h"
 static uint32_t GetSector(uint32_t Address);
-static uint32_t GetSectorSize(uint32_t Sector);
+static uint32_t Get_Bank(uint32_t addr);
 
 uint8_t Execute_Mem_Write(uint8_t *pBuffer, uint32_t mem_Address, uint32_t len)
 {
@@ -39,7 +39,7 @@ uint8_t Execute_Flash_Erase(uint32_t address , uint8_t number_Of_Sector)
 	flash_Erase_Handle.TypeErase = FLASH_TYPEERASE_SECTORS;
 	flash_Erase_Handle.Sector = FirstSector; // this is the initial sector
 	flash_Erase_Handle.NbSectors = number_Of_Sector;
-	flash_Erase_Handle.Banks = FLASH_BANK_2;
+	flash_Erase_Handle.Banks = Get_Bank(address);
 	flash_Erase_Handle.VoltageRange = FLASH_VOLTAGE_RANGE_3;  // our mcu will work on this voltage range
 
 	/*Get access to touch the flash registers */
@@ -156,4 +156,14 @@ static uint32_t GetSector(uint32_t Address)
 	}
 
 	return sector;
+}
+uint32_t Get_Bank(uint32_t addr) {
+	if(addr < (FLASH_BASE + FLASH_BANK_SIZE)) {
+		/*	Bank 1	*/
+		return FLASH_BANK_1;
+	}
+	else {
+		/*	Bank 2	*/
+		return FLASH_BANK_2;
+	}
 }

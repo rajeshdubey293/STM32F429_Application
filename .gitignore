@@ -2,3 +2,10 @@
 /Debug
 STM32F4_Application.launch
 STM32F429_Application.launch
+/build
+/cmake
+/.vs
+/.vscode
+CMakeLists.txt
+CMakePresets.json
+vcpkg-configuration.json
